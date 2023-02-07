@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductApp.Application.Features.Commands.CreateProduct;
 using ProductApp.Application.Features.Queries.GetAllProducts;
+using ProductApp.Application.Features.Queries.GetProductById;
 using ProductApp.Application.Interfaces.Repository;
 
 namespace ProductApp.WebApi.Controllers
@@ -31,6 +32,14 @@ namespace ProductApp.WebApi.Controllers
         public async Task<IActionResult> Create(CreateProductCommand request)
         {
             return Ok(await _mediator.Send(request));
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetProductByIdQuery() { Id = id };
+            return Ok(await _mediator.Send(query));
         }
     }
 }

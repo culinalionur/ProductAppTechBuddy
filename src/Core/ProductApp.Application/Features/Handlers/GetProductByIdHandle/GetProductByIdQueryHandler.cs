@@ -24,12 +24,12 @@ namespace ProductApp.Application.Features.Handlers.GetProductByIdHandle
             this.mapper = mapper;
         }
 
-        public async Task<ServiceResponse<ProductViewDto>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ServiceResponse<GetProductByIdViewModel>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
 
-            var dto = mapper.Map<ProductViewDto>(product);
-            return new ServiceResponse<ProductViewDto>(dto);
+            var dto = mapper.Map<GetProductByIdViewModel>(product);
+            return new ServiceResponse<GetProductByIdViewModel>(dto);
         }
     }
 }
