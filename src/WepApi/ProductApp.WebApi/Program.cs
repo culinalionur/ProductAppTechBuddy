@@ -1,3 +1,4 @@
+using ProductApp.Application;
 using ProductApp.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistenceServices();
+builder.Services.AddApplicationRegistration();
 
 var app = builder.Build();
 
